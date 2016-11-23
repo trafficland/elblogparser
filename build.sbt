@@ -1,10 +1,20 @@
-name := "elblogparser"
+import sbt._
+import sbt.Keys._
+import trafficland.opensource.sbt.plugins._
 
-version := "0.0.1-SNAPSHOT"
+val name = "elblogparser"
+val libVersion = "0.0.1".toReleaseFormat()
 
-scalaVersion := "2.11.8"
+lazy val parserProject =  Project(name, file("."))
+  .enablePlugins(StandardPluginSet)
+  .settings(
+    scalaVersion := "2.12.1",
+    version := libVersion,
+    cancelable in Global := true,
+    scalacOptions += "-language:implicitConversions",
+      libraryDependencies ++= dependencies
+  )
 
-cancelable in Global := true
-
-libraryDependencies ++= Seq(
+lazy val dependencies = Seq(
+  "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 )
