@@ -56,7 +56,12 @@ case class ELBRecordParser(fieldBufferCapacity: Int = 512) {
         )
       )
     } else {
-      RecordParsingFailure(rawRecord, fieldParsingResults.values.toList)
+      RecordParsingFailure(rawRecord,
+        fieldParsingResults.values.filter {
+          case FieldParsingFailure(_, _) => true
+          case _ => false
+        }.toList
+      )
     }
 
     handler(result)
