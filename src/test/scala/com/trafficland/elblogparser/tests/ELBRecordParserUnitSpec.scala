@@ -1,4 +1,4 @@
-package com.github.ereichert.elblogparser
+package com.trafficland.elblogparser.tests
 
 import java.net.InetSocketAddress
 import java.time.ZonedDateTime
