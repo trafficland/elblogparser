@@ -11,8 +11,7 @@ lazy val parserProject =  Project(name, file("."))
     scalaVersion := "2.12.1",
     version := libVersion,
     cancelable in Global := true,
-    scalacOptions += "-language:implicitConversions",
-      libraryDependencies ++= dependencies
+    libraryDependencies ++= dependencies
   )
 
 lazy val dependencies = Seq(
