@@ -3,7 +3,7 @@ import sbt.Keys._
 import trafficland.opensource.sbt.plugins._
 
 val name = "elblogparser"
-val libVersion = "0.0.1".toReleaseFormat()
+val libVersion = "0.0.1-SNAPSHOT".toReleaseFormat()
 
 lazy val parserProject =  Project(name, file("."))
   .enablePlugins(StandardPluginSet)
