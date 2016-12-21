@@ -1,6 +1,6 @@
 package com.trafficland.elblogparser
 
-import java.net.{InetSocketAddress, URL}
+import java.net.{InetSocketAddress, URI}
 import java.time.ZonedDateTime
 
 sealed trait ELBRecordField {
@@ -116,10 +116,10 @@ case object RequestMethod extends ELBRecordField {
   }
 }
 
-case object RequestURL extends ELBRecordField {
+case object RequestURI extends ELBRecordField {
 
   override def parse(raw: String): FieldParsingResult = try {
-    FieldParsingSuccess(new URL(raw))
+    FieldParsingSuccess(new URI(raw))
   } catch {
     case e: Exception => FieldParsingFailure(this, e.toString)
   }

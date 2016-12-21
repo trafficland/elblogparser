@@ -150,7 +150,7 @@ class ELBRecordParserUnitSpec extends WordSpec {
           elbRecord.receivedBytes should equal(10995116277760L)
           elbRecord.sentBytes should equal(5497558138880L)
           elbRecord.requestMethod should equal(GET)
-          elbRecord.requestURL.toString should equal("http://some.domain.com:80/path0/path1?param0=p0&param1=p1")
+          elbRecord.requestURI.toString should equal("http://some.domain.com:80/path0/path1?param0=p0&param1=p1")
           elbRecord.requestHTTPVersion should equal(`HTTPVersion1.1`)
           elbRecord.userAgent should not be defined
           elbRecord.sslCipher should not be defined
@@ -180,7 +180,7 @@ class ELBRecordParserUnitSpec extends WordSpec {
           elbRecord.receivedBytes should equal(10995116277760L)
           elbRecord.sentBytes should equal(5497558138880L)
           elbRecord.requestMethod should equal(GET)
-          elbRecord.requestURL.toString should equal("http://some.domain.com:80/path0/path1?param0=p0&param1=p1")
+          elbRecord.requestURI.toString should equal("http://some.domain.com:80/path0/path1?param0=p0&param1=p1")
           elbRecord.requestHTTPVersion should equal(`HTTPVersion1.1`)
           elbRecord.userAgent should be(Some("Mozilla/5.0 (cloud; like Mac OS X; en-us)"))
           elbRecord.sslCipher should be(Some("some_ssl_cipher"))
