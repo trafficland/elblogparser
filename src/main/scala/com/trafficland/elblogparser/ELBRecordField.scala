@@ -8,9 +8,9 @@ sealed trait ELBRecordField {
   val endDelimiter: Char = ' '
 
   protected def parseAddress(raw: String): FieldParsingResult = try {
-      val split = raw.split(':')
-      FieldParsingSuccess(InetSocketAddress.createUnresolved(split(0), split(1).toInt))
-    } catch {
+    val uri = new URI(s"my://$raw")
+    FieldParsingSuccess(InetSocketAddress.createUnresolved(uri.getHost, uri.getPort))
+  } catch {
       case e: Exception => FieldParsingFailure(this, e.toString)
     }
 
