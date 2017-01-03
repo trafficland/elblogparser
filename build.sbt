@@ -9,6 +9,8 @@ val libVersion = "0.0.1-SNAPSHOT".toReleaseFormat()
 lazy val parserProject =  Project(name, file("."))
   .enablePlugins(StandardPluginSet)
   .settings(
+    organization := "com.trafficland",
+    crossScalaVersions := Seq("2.11.8", "2.12.1"),
     scalaVersion := "2.12.1",
     version := libVersion,
     isApp := false,
