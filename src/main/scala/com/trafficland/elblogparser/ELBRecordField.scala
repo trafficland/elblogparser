@@ -134,9 +134,9 @@ case object RequestHTTPVersion extends ELBRecordField {
 
   override def parse(raw: String): FieldParsingResult = {
     raw match {
-      case `version1.0String` => FieldParsingSuccess(`HTTPVersion1.0`)
-      case `version1.1String` => FieldParsingSuccess(`HTTPVersion1.1`)
-      case `version2String` => FieldParsingSuccess(`HTTPVersion2`)
+      case `version1.0String` => FieldParsingSuccess(V1_1)
+      case `version1.1String` => FieldParsingSuccess(V1_1)
+      case `version2String` => FieldParsingSuccess(V2)
       case _ => FieldParsingFailure(this, "Request HTTP version is not valid.")
     }
   }
