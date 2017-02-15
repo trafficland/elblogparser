@@ -21,6 +21,7 @@ lazy val parserProject =  Project(name, file("."))
     libraryDependencies ++= dependencies,
     bintrayRepository := "oss",
     bintrayOrganization := Some("trafficland"),
+    publishMavenStyle := false,
     remoteGitRepoPatterns ++= Seq(
       """^git@github.com:ereichert/.*\.git""".r,
       """^https://github.com/ereichert/.*\.git""".r
