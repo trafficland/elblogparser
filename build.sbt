@@ -19,7 +19,7 @@ lazy val parserProject =  Project(name, file("."))
     isApp := false,
     cancelable in Global := true,
     libraryDependencies ++= dependencies,
-    bintrayRepository := "sbt-plugins",
+    bintrayRepository := "oss",
     bintrayOrganization := Some("trafficland"),
     remoteGitRepoPatterns ++= Seq(
       """^git@github.com:ereichert/.*\.git""".r,
