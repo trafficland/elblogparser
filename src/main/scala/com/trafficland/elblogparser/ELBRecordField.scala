@@ -1,6 +1,6 @@
 package com.trafficland.elblogparser
 
-import java.net.{InetSocketAddress, URI}
+import java.net.{ InetSocketAddress, URI }
 import java.time.ZonedDateTime
 
 sealed trait ELBRecordField {
@@ -11,20 +11,20 @@ sealed trait ELBRecordField {
     val uri = new URI(s"my://$raw")
     FieldParsingSuccess(InetSocketAddress.createUnresolved(uri.getHost, uri.getPort))
   } catch {
-      case e: Exception => FieldParsingFailure(this, e.toString)
-    }
+    case e: Exception => FieldParsingFailure(this, e.toString)
+  }
 
   protected def parseProcessingTime(raw: String): FieldParsingResult = try {
-      FieldParsingSuccess(raw.toDouble)
-    } catch {
-      case e: Exception => FieldParsingFailure(this, e.toString)
-    }
+    FieldParsingSuccess(raw.toDouble)
+  } catch {
+    case e: Exception => FieldParsingFailure(this, e.toString)
+  }
 
   protected def parseStatusCode(raw: String): FieldParsingResult = try {
-      FieldParsingSuccess(raw.toInt)
-    } catch {
-      case e: Exception => FieldParsingFailure(this, e.toString)
-    }
+    FieldParsingSuccess(raw.toInt)
+  } catch {
+    case e: Exception => FieldParsingFailure(this, e.toString)
+  }
 
   protected def parseByteQuantity(raw: String): FieldParsingResult = try {
     FieldParsingSuccess(raw.toLong)
@@ -147,7 +147,7 @@ case object UserAgent extends ELBRecordField {
   override val startDelimiter: Option[Char] = Some('\"')
   override val endDelimiter: Char = '\"'
 
-  override def parse(raw: String): FieldParsingResult = if(raw.isEmpty) {
+  override def parse(raw: String): FieldParsingResult = if (raw.isEmpty) {
     FieldParsingSuccess(None)
   } else {
     FieldParsingSuccess(Some(raw))
@@ -158,7 +158,7 @@ case object SSLCipher extends ELBRecordField {
 
   override val startDelimiter: Option[Char] = Some(' ')
 
-  override def parse(raw: String): FieldParsingResult = if(raw.isEmpty) {
+  override def parse(raw: String): FieldParsingResult = if (raw.isEmpty) {
     FieldParsingSuccess(None)
   } else {
     FieldParsingSuccess(Some(raw))
@@ -167,7 +167,7 @@ case object SSLCipher extends ELBRecordField {
 
 case object SSLProtocol extends ELBRecordField {
 
-  override def parse(raw: String): FieldParsingResult = if(raw.isEmpty) {
+  override def parse(raw: String): FieldParsingResult = if (raw.isEmpty) {
     FieldParsingSuccess(None)
   } else {
     FieldParsingSuccess(Some(raw))

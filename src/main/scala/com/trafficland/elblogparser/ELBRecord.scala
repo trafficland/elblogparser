@@ -1,6 +1,6 @@
 package com.trafficland.elblogparser
 
-import java.net.{InetSocketAddress, URI}
+import java.net.{ InetSocketAddress, URI }
 import java.time.ZonedDateTime
 
 case class ELBRecord(
