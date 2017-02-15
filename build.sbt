@@ -4,7 +4,7 @@ import sbt.Keys._
 import sbt._
 
 val name = "elblogparser"
-val libVersion = "0.99.0-SNAPSHOT".toReleaseFormat
+val libVersion = "1.0.0-SNAPSHOT".toReleaseFormat
 
 lazy val parserProject =  Project(name, file("."))
   .enablePlugins(StandardPluginSet)
@@ -23,8 +23,8 @@ lazy val parserProject =  Project(name, file("."))
     bintrayOrganization := Some("trafficland"),
     publishMavenStyle := false,
     remoteGitRepoPatterns ++= Seq(
-      """^git@github.com:ereichert/.*\.git""".r,
-      """^https://github.com/ereichert/.*\.git""".r
+      """^git@github.com:trafficland/.*\.git""".r,
+      """^https://github.com/trafficland/.*\.git""".r
     )
   )
 
