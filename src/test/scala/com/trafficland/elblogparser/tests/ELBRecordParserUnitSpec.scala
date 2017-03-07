@@ -6,7 +6,7 @@ import java.time.ZonedDateTime
 import com.trafficland.elblogparser._
 import org.scalatest.Matchers._
 import org.scalatest.WordSpec
-import org.scalatest.matchers.{MatchResult, Matcher}
+import org.scalatest.matchers.{ MatchResult, Matcher }
 import ELBRecordFieldMatchers._
 
 class ELBRecordParserUnitSpec extends WordSpec {
@@ -23,11 +23,11 @@ class ELBRecordParserUnitSpec extends WordSpec {
 
         case RecordParsingFailure(_, errors) =>
           errors.map(_.asInstanceOf[FieldParsingFailure[_]].field) should contain
-            only(
-              Timestamp,
-              BackendStatusCode,
-              SentBytes
-            )
+          only(
+            Timestamp,
+            BackendStatusCode,
+            SentBytes
+          )
       }
     }
 
@@ -142,11 +142,11 @@ class ELBRecordParserUnitSpec extends WordSpec {
           elbRecord.elbName should equal("elbname")
           elbRecord.clientAddress should equal(InetSocketAddress.createUnresolved("[fdac:afdb:6d5::1234]", 54814))
           elbRecord.backendAddress should equal(InetSocketAddress.createUnresolved("172.16.20.5", 9000))
-          elbRecord.requestProcessingTime should equal(0.000039)
-          elbRecord.backendProcessingTime should equal(0.145507)
-          elbRecord.responseProcessingTime should equal(0.00003)
-          elbRecord.elbStatusCode should equal(200)
-          elbRecord.backendStatusCode should equal(404)
+          elbRecord.requestProcessingTime should equal(ProcessingTime(0.000039))
+          elbRecord.backendProcessingTime should equal(ProcessingTime(0.145507))
+          elbRecord.responseProcessingTime should equal(ProcessingTime(0.00003))
+          elbRecord.elbStatusCode should equal(StatusCode(200))
+          elbRecord.backendStatusCode should equal(StatusCode(404))
           elbRecord.receivedBytes should equal(10995116277760L)
           elbRecord.sentBytes should equal(5497558138880L)
           elbRecord.requestMethod should equal(GET)
@@ -171,11 +171,11 @@ class ELBRecordParserUnitSpec extends WordSpec {
           elbRecord.elbName should equal("elbname")
           elbRecord.clientAddress should equal(InetSocketAddress.createUnresolved("172.16.1.6", 54814))
           elbRecord.backendAddress should equal(InetSocketAddress.createUnresolved("172.16.20.5", 9000))
-          elbRecord.requestProcessingTime should equal(0.000039)
-          elbRecord.backendProcessingTime should equal(0.145507)
-          elbRecord.responseProcessingTime should equal(0.00003)
-          elbRecord.elbStatusCode should equal(200)
-          elbRecord.backendStatusCode should equal(404)
+          elbRecord.requestProcessingTime should equal(ProcessingTime(0.000039))
+          elbRecord.backendProcessingTime should equal(ProcessingTime(0.145507))
+          elbRecord.responseProcessingTime should equal(ProcessingTime(0.00003))
+          elbRecord.elbStatusCode should equal(StatusCode(200))
+          elbRecord.backendStatusCode should equal(StatusCode(404))
           elbRecord.receivedBytes should equal(10995116277760L)
           elbRecord.sentBytes should equal(5497558138880L)
           elbRecord.requestMethod should equal(GET)
@@ -201,11 +201,11 @@ class ELBRecordParserUnitSpec extends WordSpec {
           elbRecord.elbName should equal("elbname")
           elbRecord.clientAddress should equal(InetSocketAddress.createUnresolved("172.16.1.6", 54814))
           elbRecord.backendAddress should equal(InetSocketAddress.createUnresolved("172.16.20.5", 9000))
-          elbRecord.requestProcessingTime should equal(0.000039)
-          elbRecord.backendProcessingTime should equal(0.145507)
-          elbRecord.responseProcessingTime should equal(0.00003)
-          elbRecord.elbStatusCode should equal(200)
-          elbRecord.backendStatusCode should equal(404)
+          elbRecord.requestProcessingTime should equal(ProcessingTime(0.000039))
+          elbRecord.backendProcessingTime should equal(ProcessingTime(0.145507))
+          elbRecord.responseProcessingTime should equal(ProcessingTime(0.00003))
+          elbRecord.elbStatusCode should equal(StatusCode(200))
+          elbRecord.backendStatusCode should equal(StatusCode(404))
           elbRecord.receivedBytes should equal(10995116277760L)
           elbRecord.sentBytes should equal(5497558138880L)
           elbRecord.requestMethod should equal(GET)
@@ -226,30 +226,30 @@ trait ELBRecordFieldMatchers {
   class ShouldFailWithFieldMatcher(expectedField: ELBRecordField) extends Matcher[RecordParsingResult] {
 
     def apply(left: RecordParsingResult): MatchResult = {
-        left match {
-          case RecordParsingSuccess(_) =>
+      left match {
+        case RecordParsingSuccess(_) =>
+          MatchResult(
+            matches = false,
+            "parsing succeeded with a bad backend processing time",
+            ""
+          )
+
+        case RecordParsingFailure(_, errors) =>
+          if (errors.length > 1) {
             MatchResult(
               matches = false,
-              "parsing succeeded with a bad backend processing time",
-              ""
+              s"There were ${errors.length} errors instead of 1.",
+              "There was a single error."
             )
-
-          case RecordParsingFailure(_, errors) =>
-            if(errors.length > 1) {
-              MatchResult(
-                matches = false,
-                s"There were ${errors.length} errors instead of 1.",
-                "There was a single error."
-              )
-            }else {
-              val FieldParsingFailure(field, _) = errors.head
-              MatchResult(
-                matches = field == expectedField,
-                s"Expected field $expectedField did not match actual field $field.",
-                s"Expected field $expectedField matched actual field $field."
-              )
-            }
-        }
+          } else {
+            val FieldParsingFailure(field, _) = errors.head
+            MatchResult(
+              matches = field == expectedField,
+              s"Expected field $expectedField did not match actual field $field.",
+              s"Expected field $expectedField matched actual field $field."
+            )
+          }
+      }
     }
   }
 

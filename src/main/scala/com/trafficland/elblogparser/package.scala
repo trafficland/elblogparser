@@ -2,8 +2,15 @@ package com.trafficland
 
 package object elblogparser {
 
-  type ProcessingTime = Double
-  type StatusCode = Int
+  class ProcessingTime(val value: Double) extends AnyVal
+  object ProcessingTime {
+    def apply(value: Double): ProcessingTime = new ProcessingTime(value)
+  }
+
+  class StatusCode(val value: Int) extends AnyVal
+  object StatusCode {
+    def apply(value: Int): StatusCode = new StatusCode(value)
+  }
 
   sealed trait HTTPRequestMethod
   case object GET extends HTTPRequestMethod
@@ -21,4 +28,14 @@ package object elblogparser {
   case object V1_1 extends HTTPVersion
   case object V2 extends HTTPVersion
 
+  object Implicits {
+
+    implicit def doubleToProcessingTime(value: Double): ProcessingTime = ProcessingTime(value)
+
+    implicit def processingTimeToDouble(processingTime: ProcessingTime): Double = processingTime.value
+
+    implicit def intToStatusCode(value: Int): StatusCode = StatusCode(value)
+
+    implicit def statusCodeToInt(statusCode: StatusCode): Int = statusCode.value
+  }
 }

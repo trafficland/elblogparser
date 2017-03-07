@@ -15,13 +15,13 @@ sealed trait ELBRecordField {
   }
 
   protected def parseProcessingTime(raw: String): FieldParsingResult = try {
-    FieldParsingSuccess(raw.toDouble)
+    FieldParsingSuccess(ProcessingTime(raw.toDouble))
   } catch {
     case e: Exception => FieldParsingFailure(this, e.toString)
   }
 
   protected def parseStatusCode(raw: String): FieldParsingResult = try {
-    FieldParsingSuccess(raw.toInt)
+    FieldParsingSuccess(StatusCode(raw.toInt))
   } catch {
     case e: Exception => FieldParsingFailure(this, e.toString)
   }
