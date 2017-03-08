@@ -23,8 +23,8 @@ lazy val parserProject =  Project(name, file("."))
     bintrayOrganization := Some("trafficland"),
     publishMavenStyle := false,
     remoteGitRepoPatterns ++= Seq(
-      """^git@github.com:ereichert/.*\.git""".r,
-      """^https://github.com/ereichert/.*\.git""".r
+      """^git@github.com:trafficland/.*\.git""".r,
+      """^https://github.com/trafficland/.*\.git""".r
     )
   )
 
