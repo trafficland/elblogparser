@@ -4,7 +4,7 @@ resolvers ++= Seq(
   )
 )
 
-addSbtPlugin("com.trafficland" % "augmentsbt" % "1.0.0")
+addSbtPlugin("com.trafficland" % "augmentsbt" % "1.0.1-20170308-210855")
 
 addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.6.0")
 

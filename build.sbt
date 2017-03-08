@@ -13,7 +13,7 @@ lazy val parserProject =  Project(name, file("."))
     organizationName := "Trafficland, Inc.",
     description := "A set of opinionated SBT plugins for common build and release tasks.",
     licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html")),
-    crossScalaVersions := Seq("2.11.8", "2.12.1"),
+    crossScalaVersions ++= Seq("2.11.8"),
     scalaVersion := "2.12.1",
     version := libVersion,
     isApp := false,
@@ -23,8 +23,8 @@ lazy val parserProject =  Project(name, file("."))
     bintrayOrganization := Some("trafficland"),
     publishMavenStyle := false,
     remoteGitRepoPatterns ++= Seq(
-      """^git@github.com:trafficland/.*\.git""".r,
-      """^https://github.com/trafficland/.*\.git""".r
+      """^git@github.com:ereichert/.*\.git""".r,
+      """^https://github.com/ereichert/.*\.git""".r
     )
   )
 
