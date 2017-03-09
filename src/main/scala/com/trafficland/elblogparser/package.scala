@@ -2,8 +2,9 @@ package com.trafficland
 
 package object elblogparser {
 
-  type ProcessingTime = Double
-  type StatusCode = Int
+  case class ProcessingTime(value: Double)
+
+  case class StatusCode(value: Int)
 
   sealed trait HTTPRequestMethod
   case object GET extends HTTPRequestMethod
@@ -21,4 +22,14 @@ package object elblogparser {
   case object V1_1 extends HTTPVersion
   case object V2 extends HTTPVersion
 
+  object Implicits {
+
+    implicit def doubleToProcessingTime(value: Double): ProcessingTime = ProcessingTime(value)
+
+    implicit def processingTimeToDouble(processingTime: ProcessingTime): Double = processingTime.value
+
+    implicit def intToStatusCode(value: Int): StatusCode = StatusCode(value)
+
+    implicit def statusCodeToInt(statusCode: StatusCode): Int = statusCode.value
+  }
 }

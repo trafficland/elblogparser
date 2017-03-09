@@ -1,5 +1,4 @@
 import com.trafficland.augmentsbt.releasemanagement.ReleaseManagementPlugin.autoImport.remoteGitRepoPatterns
-import com.trafficland.augmentsbt.toVersion
 import sbt.Keys._
 import sbt._
 
@@ -13,7 +12,7 @@ lazy val parserProject =  Project(name, file("."))
     organizationName := "Trafficland, Inc.",
     description := "A set of opinionated SBT plugins for common build and release tasks.",
     licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html")),
-    crossScalaVersions := Seq("2.11.8", "2.12.1"),
+    crossScalaVersions ++= Seq("2.11.8"),
     scalaVersion := "2.12.1",
     version := libVersion,
     isApp := false,
