@@ -1,5 +1,4 @@
 import com.trafficland.augmentsbt.releasemanagement.ReleaseManagementPlugin.autoImport.remoteGitRepoPatterns
-import com.trafficland.augmentsbt.toVersion
 import sbt.Keys._
 import sbt._
 
