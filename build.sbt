@@ -3,7 +3,7 @@ import sbt.Keys._
 import sbt._
 
 val name = "elblogparser"
-val libVersion = "1.0.0".toReleaseFormat
+val libVersion = "1.0.1-SNAPSHOT".toReleaseFormat
 
 lazy val parserProject =  Project(name, file("."))
   .enablePlugins(StandardPluginSet)
