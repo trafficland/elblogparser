@@ -2,6 +2,30 @@
 
 Using the parser is pretty straight forward.
 
+Add our Bintray repo to your project's resolvers. This is usually done in your build.
+
+Here's an example using the build.sbt style build.
+
+```scala
+
+lazy val project =  Project(name, file("."))
+  .settings(
+    .
+    .
+    .
+    resolvers ++= Seq(
+      Resolver.url("bintray-trafficland-oss", url("https://dl.bintray.com/trafficland/oss/"))(
+        Patterns(isMavenCompatible = false, Resolver.localBasePattern)
+      )
+    )
+    .
+    .
+    .
+  )
+```
+
+Use the parser.
+
 ```scala
 import com.trafficland.elblogparser._
 

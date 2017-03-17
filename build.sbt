@@ -10,7 +10,7 @@ lazy val parserProject =  Project(name, file("."))
   .settings(
     organization := "com.trafficland",
     organizationName := "Trafficland, Inc.",
-    description := "A set of opinionated SBT plugins for common build and release tasks.",
+    description := "AWS ELB Access Log Parser.",
     licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html")),
     crossScalaVersions ++= Seq("2.11.8"),
     scalaVersion := "2.12.1",
